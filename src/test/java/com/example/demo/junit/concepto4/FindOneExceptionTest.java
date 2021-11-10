@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * Se utiliza el método assertThrows
  */
-class FindOneExceptionTest {
+public class FindOneExceptionTest {
 
     @Test
-    void findOnePhone1Test() {
+    public void findOnePhone1Test() {
 
         SmartPhoneServiceImpl service = new SmartPhoneServiceImpl();
 
@@ -28,7 +28,7 @@ class FindOneExceptionTest {
 
     @DisplayName("Comprobar smartphone que no existe")
     @Test
-    void findOnePhone999Test() {
+    public void findOnePhone999Test() {
 
         SmartPhoneServiceImpl service = new SmartPhoneServiceImpl();
 
