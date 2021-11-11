@@ -3,12 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.example</groupId>
     <artifactId>m5-maven</artifactId>
     <version>1.0</version>
 
-    <name>M5 maven app</name>
+    <name>PROYECTO MAVEN</name>
     <description>Proyecto con JUnit para el estudio de Apache Maven</description>
     <url>https://www.awesomeapp.org/</url>
 
@@ -21,12 +20,13 @@
 
     <contributors>
         <contributor>
+            <name>jorge</name>
             <email>user1@example.com</email>
         </contributor>
     </contributors>
 
     <organization>
-        <name>COSMIC DEVELOPMENTS S.L.</name>
+        <name>GREAT_DEVELOPERS</name>
         <url>https://example.com</url>
     </organization>
 
@@ -35,6 +35,8 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <sonar.organization>jorgeapariciolara</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -45,7 +47,6 @@
             <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
         <dependency>
             <groupId>org.junit.platform</groupId>
@@ -53,7 +54,6 @@
             <version>1.8.1</version>
             <scope>test</scope>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
         <dependency>
             <groupId>org.mockito</groupId>
@@ -61,7 +61,6 @@
             <version>4.0.0</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <reporting>
@@ -72,7 +71,6 @@
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>3.0.0-M5</version>
             </plugin>
-
             <!--            Plugin para mostrar la documentación javadoc en el maven site-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -82,7 +80,6 @@
                     <doclint>none</doclint>  <!-- Turnoff all checks -->
                 </configuration>
             </plugin>
-
             <!--            Plugin JaCoCo para mostrar el reporte de cobertura en el maven site -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -96,7 +93,6 @@
                     </reportSet>
                 </reportSets>
             </plugin>
-
             <!--            https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html-->
             <!--            Plugin Checkstyle: https://checkstyle.org/-->
             <plugin>
@@ -111,7 +107,6 @@
                     </reportSet>
                 </reportSets>
             </plugin>
-
             <!--            Plugin PMD-->
             <!--            http://maven.apache.org/plugins/maven-pmd-plugin/index.html-->
             <plugin>
@@ -121,7 +116,6 @@
                 <configuration>
                     <linkXRef>true</linkXRef>
                     <rulesets>
-                        <!-- A rule set, that comes bundled with PMD -->
                         <ruleset>/category/java/bestpractices.xml</ruleset>
                     </rulesets>
                     <sourceEncoding>UTF-8</sourceEncoding>
@@ -130,7 +124,9 @@
                     <targetJdk>17</targetJdk>
                     <printFailingErrors>true</printFailingErrors>
                     <failOnViolation>false</failOnViolation>
-                    <includeTests>false</includeTests>
+                    <includeTests>true</includeTests>
+                    <!--                    minimumTokens vale 100 por defecto-->
+                    <minimumTokens>20</minimumTokens>
                     <includes>
                         <include>**/*.java</include>
                     </includes>
@@ -138,41 +134,33 @@
                         <compileSourceRoot>${basedir}/src/main/java</compileSourceRoot>
                     </compileSourceRoots>
                 </configuration>
-                <!--                <reportSets>-->
-                <!--                    <reportSet>-->
-                <!--                        <reports>-->
-                <!--                            <report>pmd</report>-->
-                <!--                            <report>cpd</report>-->
-                <!--                        </reports>-->
-                <!--                    </reportSet>-->
-                <!--                </reportSets>-->
             </plugin>
-
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.4.2.2</version>
+            </plugin>
         </plugins>
     </reporting>
 
     <build>
         <plugins>
-
             <!--            Actualizamos la version de maven-compiler-plugin-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.9.1</version>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
             </plugin>
-
             <!--            https://www.eclemma.org/jacoco/trunk/doc/maven.html -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -213,23 +201,12 @@
                         </configuration>
                     </execution>
                 </executions>
-
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.15.0</version>
-                <!--                <executions>-->
-                <!--                    <execution>-->
-                <!--                        <phase>compile</phase>-->
-                <!--                        <goals>-->
-                <!--                            <goal>check</goal>-->
-                <!--                            <goal>pmd</goal>-->
-                <!--                            <goal>cpd</goal>-->
-                <!--                        </goals>-->
-                <!--                    </execution>-->
-                <!--                </executions>-->
                 <executions>
                     <execution>
                         <id>pmd-check</id>
@@ -253,7 +230,8 @@
                     <targetJdk>17</targetJdk>
                     <printFailingErrors>true</printFailingErrors>
                     <failOnViolation>false</failOnViolation>
-                    <includeTests>false</includeTests>
+                    <includeTests>true</includeTests>
+                    <minimumTokens>20</minimumTokens>
                     <includes>
                         <include>**/*.java</include>
                     </includes>
@@ -262,11 +240,6 @@
                     </compileSourceRoots>
                 </configuration>
             </plugin>
-
-
         </plugins>
     </build>
-
-
-
 </project>
