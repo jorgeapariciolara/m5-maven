@@ -25,10 +25,16 @@ public class AssertionsTest {
 
         Integer num = service.count();
 
+        assertAll(
+                () -> assertNotNull(num),
+                () -> assertTrue(num > 0),
+                () -> assertEquals(3, num)
+        );
+        /*
         assertNotNull(num);
         assertTrue(num > 0);
         assertEquals(3, num);
-
+        */
     }
 
     @Test
@@ -36,7 +42,14 @@ public class AssertionsTest {
         SmartPhoneServiceImpl service = new SmartPhoneServiceImpl();
         List<SmartPhone> smartphones =  service.findAll();
 
+        assertAll(
+                () -> assertNotNull(smartphones),
+                () -> assertEquals(3, smartphones.size())
+        );
+
+        /*
         assertNotNull(smartphones);
         assertEquals(3, smartphones.size());
+         */
     }
 }
