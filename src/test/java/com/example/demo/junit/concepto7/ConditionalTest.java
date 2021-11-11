@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @EnabledIfEnvironmentVariable - Habilitar test en base a el valor de una determinada variable de entorno
  * .....
  */
+
 @DisplayName("Anotaciones para ejecución de tests de forma condicional, en base a condiciones")
 public class ConditionalTest {
 
@@ -70,5 +71,14 @@ public class ConditionalTest {
     void test6(){
         System.out.println("test4");
         assertTrue(true);
+    }
+    @Test
+    void example(){
+        System.out.println("hello");
+    }
+
+    @Test
+    void example2(){
+        System.out.println("hello");
     }
 }
