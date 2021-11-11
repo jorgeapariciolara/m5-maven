@@ -23,6 +23,8 @@ public class AssumptionsTest {
 
     @Test
     void test1(){
+        System.out.println("holi");
+        /*
         // comprobar que el entorno cumple ciertas precondiciones antes de ejecutar el test
         String username = System.getenv("USERNAME");
         assumeTrue(username.equals("pc_testing"));
@@ -36,11 +38,13 @@ public class AssumptionsTest {
         assertNotNull(num);
         assertTrue(num > 0);
         assertEquals(3, num);
-
+        */
     }
 
     @Test
     void test2(){
+        System.out.println("holi");
+        /*
         // comprobar que el entorno cumple ciertas precondiciones antes de ejecutar el test
         String username = System.getenv("USERNAME");
         assumeTrue(username.equals("pc_testing2"));
@@ -54,6 +58,6 @@ public class AssumptionsTest {
         assertNotNull(num);
         assertTrue(num > 0);
         assertEquals(3, num);
-
+        */
     }
 }
