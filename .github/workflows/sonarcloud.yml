@@ -1,4 +1,4 @@
-name: Build
+name: Static Code Analysis with SonarCloud
 on:
   push:
     branches:
@@ -29,11 +29,14 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Package
-        run: mvn -B package -f pom.xml
-      - name: Site
+
+      - name: Maven verify
+        run: mvn -B verify -f pom.xml
+
+      - name: Maven site
         run: mvn -B site -f pom.xml
-      - name: Build and analyze
+
+      - name: SonarCloud analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
