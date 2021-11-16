@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>m5-maven</artifactId>
+    <artifactId>m5-apachemaven</artifactId>
     <version>1.0</version>
 
     <name>M5 maven app</name>
@@ -15,7 +15,7 @@
     <developers>
         <developer>
             <name>jorgeaparicio</name>
-            <email>alan@example.com</email>
+            <email>jorge@example.com</email>
         </developer>
     </developers>
 
