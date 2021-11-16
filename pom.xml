@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.6</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>com.example</groupId>
-    <artifactId>spring-patterns</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>m5-maven</name>
-    <description>m5-apache-maven</description>
+    <groupId>org.example</groupId>
+    <artifactId>m5-maven</artifactId>
+    <version>1.0</version>
+    <name>PROYECTO MAVEN</name>
+    <description>Proyecto con JUnit para el estudio de Apache Maven</description>
     <url>https://www.awesomeapp.org/</url>
-
     <developers>
         <developer>
-            <name>jorgeaparicio</name>
-            <email>jorge@example.com</email>
+            <name>alansastre</name>
+            <email>alan@example.com</email>
         </developer>
     </developers>
-
     <contributors>
         <contributor>
+            <name>jorge</name>
             <email>user1@example.com</email>
         </contributor>
     </contributors>
 
     <organization>
+        <name>GREAT_DEVELOPERS</name>
         <name>COSMIC DEVELOPMENTS S.L.</name>
         <url>https://example.com</url>
     </organization>
@@ -38,42 +33,37 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.junit.reportsPath>target/surefire-reports/*.xml</sonar.junit.reportsPath>
-        <sonar.java.checkstyle.reportPaths>target/checkstyle-result.xml</sonar.java.checkstyle.reportPaths>
-        <sonar.java.pmd.reportPaths>target/pmd.xml</sonar.java.pmd.reportPaths>
-        <sonar.java.spotbugs.reportPaths>target/spotbugsXml.xml</sonar.java.spotbugs.reportPaths>
-        <sonar.organization>jorgeaparicio</sonar.organization>
+        <sonar.organization>jorgeapariciolara</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.junit.reportsPath>target/surefire-reports/</sonar.junit.reportsPath>
+        <sonar.java.checkstyle.reportsPaths>target/checkstyle-result.xml/</sonar.java.checkstyle.reportsPaths>
+        <sonar.java.pmd.reportPaths>target/pdm.xml,target/cpd.xml</sonar.java.pmd.reportPaths>
+        <sonar.java.spotbugs.reportPaths>target/spotbugsXml.xml</sonar.java.spotbugs.reportPaths>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>1.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>4.0.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <reporting>
         <plugins>
             <!--            Plugin para mostrar los resultados de los tests unitarios en el maven site-->
@@ -95,10 +85,10 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
                 <reportSets>
                     <reportSet>
                         <reports>
+                            <!-- select non-aggregate reports -->
                             <report>report</report>
                         </reports>
                     </reportSet>
@@ -153,12 +143,13 @@
             </plugin>
         </plugins>
     </reporting>
-
     <build>
         <plugins>
+            <!--            Actualizamos la version de maven-compiler-plugin-->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -188,6 +179,26 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>default-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>COMPLEXITY</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.30</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
